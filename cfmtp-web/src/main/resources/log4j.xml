@@ -28,6 +28,9 @@
 	<logger name="org.springframework.web.servlet.mvc">
 		<level value="TRACE" />
 	</logger>
+	<logger name="org.apache.activemq">
+		<level value="TRACE" />
+	</logger>
     <root>
 		<priority value="warn" />
 		<appender-ref ref="console" />
