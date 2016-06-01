@@ -15,25 +15,33 @@ import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.tmarciniak.cfmtp.config.ApplicationConfig;
+import org.tmarciniak.cfmtp.config.MessagingConfig;
+import org.tmarciniak.cfmtp.mapping.DozerMapper;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = { ApplicationConfig.class })
+@ContextConfiguration(classes = { MessagingConfig.class })
 public class MessageConversionTests extends TestCase {
+
+	private static final String TEST_DATE = "14-JAN-15 10:27:44";
 
 	@Inject
 	ApplicationConfig applicationConfig;
 
+	@Inject
+	DozerMapper dozerMapper;
+
 	@Test
 	public void testDateConversion() {
 		String format = applicationConfig.getDateFormat();
-		
+
 		Date date = null;
 		try {
 			date = new SimpleDateFormat(format, Locale.ENGLISH)
-					.parse("14-JAN-15 10:27:44");
+					.parse(TEST_DATE);
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
+
 		Calendar calendar = Calendar.getInstance();
 		calendar.set(Calendar.MILLISECOND, 0);
 		calendar.set(Calendar.DAY_OF_MONTH, 14);
@@ -50,5 +58,9 @@ public class MessageConversionTests extends TestCase {
 		assertEquals(calendar.getTimeInMillis(),
 				calendarToCompare.getTimeInMillis());
 	}
-	
+
+	@Test
+	public void testTradeMessageToTradeMessageDTOConversion() {
+	}
+
 }

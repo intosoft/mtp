@@ -10,9 +10,9 @@ import org.springframework.web.socket.config.annotation.StompEndpointRegistry;
 
 @Configuration
 @EnableScheduling
-@ComponentScan("org.tmarciniak.cfmtp.web")
 @EnableWebSocketMessageBroker
-public class WebSocketConfig extends AbstractWebSocketMessageBrokerConfigurer {
+@ComponentScan("org.tmarciniak.cfmtp")
+public class WebSocketWebConfig extends AbstractWebSocketMessageBrokerConfigurer {
 
 	@Override
 	public void registerStompEndpoints(StompEndpointRegistry registry) {

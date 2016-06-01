@@ -1,13 +1,12 @@
 package org.tmarciniak.cfmtp.web.listener;
 
-import java.util.concurrent.CountDownLatch;
-
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
-import org.tmarciniak.cfmtp.config.ApplicationConfig;
-import org.tmarciniak.cfmtp.web.service.TradeMessageService;
+import org.tmarciniak.cfmtp.config.WebSocketConfig;
+import org.tmarciniak.cfmtp.model.TradeMessagesDTO;
+import org.tmarciniak.cfmtp.web.websocket.TradeMessageWebSocketService;
 
 import reactor.core.Reactor;
 import reactor.event.Event;
@@ -16,29 +15,26 @@ import reactor.function.Consumer;
 
 @Service
 public class TradeMessageTransformationResultListener implements
-		Consumer<Event<String>> {
-
-	@Inject
-	CountDownLatch latch;
+		Consumer<Event<TradeMessagesDTO>> {
 
 	@Inject
 	Reactor reactor;
 
 	@Inject
-	TradeMessageService tradeMessageService;
+	TradeMessageWebSocketService tradeMessageWebSocketService;
 
 	@Inject
-	ApplicationConfig applicationConfig;
+	WebSocketConfig webSocketConfig;
 
 	@PostConstruct
 	public void init() {
-		reactor.on(Selectors.$(ApplicationConfig.TRANSFORMED_RESULTS_CHANNEL),
+		reactor.on(Selectors.$(webSocketConfig.getTransformedResultsChannel()),
 				this);
 	}
 
 	@Override
-	public void accept(Event<String> t) {
-		tradeMessageService.sendTradeMessageTransformationResult(t.getData());
-		latch.countDown();
+	public void accept(Event<TradeMessagesDTO> event) {
+		tradeMessageWebSocketService
+				.sendTradeMessageTransformationResult(event.getData(),null);
 	}
 }
