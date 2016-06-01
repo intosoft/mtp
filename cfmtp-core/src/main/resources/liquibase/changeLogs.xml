@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+	<changeSet id="1" author="tmarciniak">
+		<createTable tableName="trade_message">
+			<column name="id" type="bigint" autoIncrement="true">
+				<constraints primaryKey="true" nullable="false" />
+			</column>
+			<column name="time_placed" type="timestamp">
+				<constraints nullable="false" />
+			</column>
+			<column name="amount_buy" type="numeric(12,2)">
+				<constraints nullable="false" />
+			</column>
+			<column name="amount_sell" type="numeric(12,2)">
+				<constraints nullable="false" />
+			</column>
+			<column name="currency_from" type="varchar(3)">
+				<constraints nullable="false" />
+			</column>
+			<column name="currency_to" type="varchar(3)">
+				<constraints nullable="false" />
+			</column>
+			<column name="user_id" type="varchar(255)">
+				<constraints nullable="false" />
+			</column>
+			<column name="originating_country" type="varchar(255)">
+				<constraints nullable="false" />
+			</column>
+			<column name="rate" type="numeric(12,2)">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+	</changeSet>
+</databaseChangeLog>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beansProjectDescription>
+	<version>1</version>
+	<pluginVersion><![CDATA[3.6.3.201411271034-RELEASE]]></pluginVersion>
+	<configSuffixes>
+		<configSuffix><![CDATA[xml]]></configSuffix>
+	</configSuffixes>
+	<enableImports><![CDATA[false]]></enableImports>
+	<configs>
+		<config>java:org.tmarciniak.cfmtp.config.ApplicationConfig</config>
+		<config>java:org.tmarciniak.cfmtp.mapping.DozerMapper</config>
+		<config>java:org.tmarciniak.cfmtp.config.MessagingConfig</config>
+		<config>java:org.tmarciniak.cfmtp.config.PersistenceConfig</config>
+		<config>java:org.tmarciniak.cfmtp.processor.TradeMessageProcessor</config>
+		<config>java:org.tmarciniak.cfmtp.config.WebSocketConfig</config>
+		<config>java:org.tmarciniak.cfmtp.listener.TradeMessageListener</config>
+	</configs>
+	<autoconfigs>
+	</autoconfigs>
+	<configSets>
+	</configSets>
+</beansProjectDescription>
