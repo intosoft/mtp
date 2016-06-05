@@ -2,7 +2,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.tmarciniak</groupId>
-	<artifactId>cfmtp</artifactId>
+	<artifactId>mtp</artifactId>
 	<packaging>pom</packaging>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Marketing Trade Processor</name>
@@ -96,7 +96,7 @@
 		</pluginRepository>
 	</pluginRepositories>
 	<build>
-		<finalName>cfmtp</finalName>
+		<finalName>mtp</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -110,7 +110,7 @@
 		</plugins>
 	</build>
 	<modules>
-		<module>cfmtp-web</module>
-		<module>cfmtp-core</module>
+		<module>mtp-web</module>
+		<module>mtp-core</module>
 	</modules>
 </project>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8"></meta>
+		<title>Trade Market Processor</title>
+		<meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0"></meta>
+		<link href="assets/lib/bootstrap/css/bootstrap.css" rel="stylesheet"></link>
+		<link href="assets/common/mtp.css" rel="stylesheet"></link>
+		<!--[if lt IE 9]>
+		<script src="assets/lib/html5shiv/dist/html5shiv.js"></script>
+		<![endif] -->
+
+		<!-- 3rd party -->
+		<script src="assets/lib/jquery/jquery.js"></script>
+		<script src="assets/lib/bootstrap/js/bootstrap.js"></script>
+		<script src="assets/lib/knockout/knockout.js"></script>
+		<script src="assets/lib/sockjs/sockjs.js"></script>
+		<script src="assets/lib/stomp/lib/stomp.min.js"></script>
+
+		<script src="assets/lib/highcharts/highstock.js"></script>
+		<script src="assets/lib/highcharts/modules/exporting.js"></script>
+
+		<!-- application -->
+		<script src="model/trade_model.js"></script>
+		<script src="model/mtp_model.js"></script>
+		<script src="model/application_model.js"></script>
+		<script src="mtp.js"></script>
+	</head>
+	<body>
+		<div class="container">
+			<div id="heading" class="masthead">
+				<h3 class="muted">Trade Market Processor</h3>
+			</div>
+			<div id="main-content">
+				<select
+					data-bind="options: mtp().availableCurrenciesPairs, 
+						selectedOptions: mtp().chosenCurrenciesPairs, 
+						event:{ change: mtp().onCurrencyPairsChange},
+						optionsText: function(item) {
+	                       return item[0] + ' -> ' + item[1];
+	                    },
+	                    optionsValue: function(item) {
+	                       return item;
+	                    }"
+					size="5" multiple="multiple"></select>
+				
+				<div id="container" style="height: 400px; min-width: 310px"></div>
+				
+				<div class="alert alert-warning">
+					<h5>Notifications</h5>
+					<ul data-bind="foreach: notifications">
+						<li data-bind="text: notification"></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
